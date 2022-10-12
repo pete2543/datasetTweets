@@ -6,10 +6,10 @@ from nltk.tokenize import regexp_tokenize
 from nltk.tokenize import word_tokenize
 from pythainlp.tokenize import word_tokenize
 from cleantext import clean
-
-query = "นายก8ปี"
+tert=[]
+query = "โหนกระแส"
 tweets = []
-limit = 500
+limit = 400
 
 for tweet in sntwitter.TwitterSearchScraper(query).get_items():
     
@@ -18,7 +18,7 @@ for tweet in sntwitter.TwitterSearchScraper(query).get_items():
     if len(tweets) == limit:
         break
     else:
-        tweets.append(tweet.content)
+         tweets.append([tweet.date, tweet.username, tweet.content])
 
 emoji_pattern = re.compile("["
         u"\U0001F600-\U0001F64F"  # emoticons
@@ -55,8 +55,8 @@ def clean_text(text):
     return text
 
 text = re.sub(r'https[\w:/\.|\?|\!]+', '', tweet_noemoji, flags=re.MULTILINE)
-df = pd.DataFrame(eval(text), columns=['Tweet'])
+df = pd.DataFrame(eval(text),columns=['Date', 'User', 'Tweet'])
 print(text)
 
 #โหลด CSV
-df.to_csv('#tweetsdataนายก8ปี.csv')
+df.to_csv('.\\tw_api\\tweetsdataโหนกระแส.csv')
