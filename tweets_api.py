@@ -5,11 +5,11 @@ import emoji
 from nltk.tokenize import regexp_tokenize
 from nltk.tokenize import word_tokenize
 from pythainlp.tokenize import word_tokenize
-from cleantext import clean
+
 tert=[]
-query = "โหนกระแส"
+query = "เหี้ย"
 tweets = []
-limit = 400
+limit = 200
 
 for tweet in sntwitter.TwitterSearchScraper(query).get_items():
     
@@ -59,4 +59,4 @@ df = pd.DataFrame(eval(text),columns=['Date', 'User', 'Tweet'])
 print(text)
 
 #โหลด CSV
-df.to_csv('.\\tw_api\\tweetsdataโหนกระแส.csv')
+df.to_csv('.\\new_tw\\testsss.csv')
